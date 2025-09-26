@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home -->
+  <url>
+    <loc>https://vitamindbenefits.github.io/</loc>
+    <lastmod>2025-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.00</priority>
+  </url>
+
+  <!-- Blog index -->
+  <url>
+    <loc>https://vitamindbenefits.github.io/blog/</loc>
+    <lastmod>2025-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- (Optional) You can add your weekly posts here.
+       Example for Week 38—copy/paste and change the number for each week you’ve published.
+  <url>
+    <loc>https://vitamindbenefits.github.io/blog/week-38.html</loc>
+    <lastmod>2025-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.64</priority>
+  </url>
+  -->
+</urlset>
+
