@@ -1,114 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Vitamin D Blog Index</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Index of all 52 weekly blog posts about the benefits of Vitamin D with K2.">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f9f9f9;
-            color: #333;
-        }
-        header {
-            background: linear-gradient(to right, #e43ed6, #c414c1);
-            color: white;
-            text-align: center;
-            padding: 2.5rem 1rem;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.2rem;
-        }
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.08);
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 0.75rem;
-        }
-        a {
-            color: #7b009d;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Vitamin D Blog: 52-Week Series | Index</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Browse all 52 weekly Vitamin D with K2 blog posts. Compact card layout with titles, snippets, search, and newest-first sorting." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://vitamindbenefits.github.io/blog/" />
+
+  <!-- Favicons (optional if you have them at root) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+  <style>
+    :root{
+      --purple:#7c3aed;
+      --purple-600:#6d28d9;
+      --purple-50:#f3e8ff;
+      --ink:#111827;
+      --muted:#6b7280;
+      --bg:#f7f7fb;
+      --card:#ffffff;
+      --ring:#e9d5ff;
+      --border:#f3e8ff;
+      --shadow:0 10px 25px rgba(124,58,237,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background:var(--bg);
+      color:#374151;
+      line-height:1.6;
+    }
+
+    /* Header / Hero */
+    header{
+      background:linear-gradient(135deg,#d946ef 0%,#c026d3 100%);
+      color:#fff;
+      padding:44px 16px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    header h1{
+      margin:0;
+      font-size:2.15rem;
+      letter-spacing:.2px;
+      text-shadow:0 2px 6px rgba(0,0,0,.15);
+    }
+    header p{
+      margin:.6rem auto 0;
+      opacity:.95;
+      max-width:820px;
+      font-size:1.02rem;
+    }
+    .topbar{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      margin-top:14px;
+      flex-wrap:wrap;
+    }
+    .chip{
+      display:inline-block;
+      background:#fff;
+      color:#c026d3;
+      border-radius:999px;
+      padding:8px 14px;
+      text-decoration:none;
+      font-weight:700;
+      border:2px solid rgba(255,255,255,.6);
+      transition:transform .2s ease;
+    }
+    .chip:hover{ transform:translateY(-1px); }
+
+    /* Search / Actions */
+    .container{max-width:1100px;margin:28px auto;padding:0 18px}
+    .actions{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      box-shadow:var(--shadow);
+      padding:14px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .search{
+      position:relative;
+      flex:1 1 340px;
+      max-width:560px;
+    }
+    .search input{
+      width:100%;
+      border:2px solid var(--ring);
+      border-radius:12px;
+      padding:12px 14px 12px 40px;
+      font-size:1rem;
+      outline:none;
+      background:#fff;
+    }
+    .search svg{
+      position:absolute;left:12px;top:50%;transform:translateY(-50%);
+      opacity:.6
+    }
+    .select{
+      border:2px solid var(--ring);
+      border-radius:12px;
+      padding:10px 12px;
+      background:#fff;
+      font-weight:600;
+      color:var(--purple-600);
+    }
+    .count{
+      margin-left:auto;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    /* Grid */
+    .grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:16px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:14px;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      min-height:182px;
+      position:relative;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{ transform:translateY(-2px); box-shadow:0 16px 30px rgba(124,58,237,.12); }
+    .badge{
+      background:var(--purple-50);
+      color:var(--purple-600);
+      padding:4px 10px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:.83rem;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      width:max-content;
+    }
+    .title{
+      color:var(--ink);
+      font-size:1.06rem;
+      font-weight:800;
+      margin:10px 0 6px;
+      line-height:1.35;
+    }
+    .excerpt{
+      color:var(--muted);
+      font-size:.95rem;
+      margin-bottom:10px;
+      flex:1 0 auto;
+    }
+    .read{
+      color:var(--purple);
+      font-weight:800;
+      text-decoration:none;
+      width:max-content;
+    }
+    .read:hover{opacity:.9}
+    .now{
+      position:absolute;top:14px;right:14px;
+      background:#22c55e;
+      color:#fff;
+      font-weight:800;
+      font-size:.72rem;
+      padding:4px 8px;
+      border-radius:999px;
+      box-shadow:0 4px 10px rgba(34,197,94,.25);
+    }
+
+    /* Footer */
+    footer{
+      text-align:center;
+      color:#9ca3af;
+      font-size:.9rem;
+      margin:34px 0 24px;
+    }
+
+    @media (max-width:520px){
+      header h1{font-size:1.6rem}
+      .actions{padding:12px}
+    }
+  </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YKEN8KERCT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YKEN8KERCT');
+  </script>
 </head>
 <body>
-    <header>
-        <h1>Vitamin D Blog Series: Weekly Insights</h1>
-    </header>
-    <div class="container">
-        <p>Explore our 52-week blog journey through the many benefits of Vitamin D with K2:</p>
-        <ul>
-            <li><a href="week-1.html">Blog 1</a></li>
-            <li><a href="week-2.html">Blog 2</a></li>
-            <li><a href="week-3.html">Blog 3</a></li>
-            <li><a href="week-4.html">Blog 4</a></li>
-            <li><a href="week-5.html">Blog 5</a></li>
-            <li><a href="week-6.html">Blog 6</a></li>
-            <li><a href="week-7.html">Blog 7</a></li>
-            <li><a href="week-8.html">Blog 8</a></li>
-            <li><a href="week-9.html">Blog 9</a></li>
-            <li><a href="week-10.html">Blog 10</a></li>
-            <li><a href="week-11.html">Blog 11</a></li>
-            <li><a href="week-12.html">Blog 12</a></li>
-            <li><a href="week-13.html">Blog 13</a></li>
-            <li><a href="week-14.html">Blog 14</a></li>
-            <li><a href="week-15.html">Blog 15</a></li>
-            <li><a href="week-16.html">Blog 16</a></li>
-            <li><a href="week-17.html">Blog 17</a></li>
-            <li><a href="week-18.html">Blog 18</a></li>
-            <li><a href="week-19.html">Blog 19</a></li>
-            <li><a href="week-20.html">Blog 20</a></li>
-            <li><a href="week-21.html">Blog 21</a></li>
-            <li><a href="week-22.html">Blog 22</a></li>
-            <li><a href="week-23.html">Blog 23</a></li>
-            <li><a href="week-24.html">Blog 24</a></li>
-            <li><a href="week-25.html">Blog 25</a></li>
-            <li><a href="week-26.html">Blog 26</a></li>
-            <li><a href="week-27.html">Blog 27</a></li>
-            <li><a href="week-28.html">Blog 28</a></li>
-            <li><a href="week-29.html">Blog 29</a></li>
-            <li><a href="week-30.html">Blog 30</a></li>
-            <li><a href="week-31.html">Blog 31</a></li>
-            <li><a href="week-32.html">Blog 32</a></li>
-            <li><a href="week-33.html">Blog 33</a></li>
-            <li><a href="week-34.html">Blog 34</a></li>
-            <li><a href="week-35.html">Blog 35</a></li>
-            <li><a href="week-36.html">Blog 36</a></li>
-            <li><a href="week-37.html">Blog 37</a></li>
-            <li><a href="week-38.html">Blog 38</a></li>
-            <li><a href="week-39.html">Blog 39</a></li>
-            <li><a href="week-40.html">Blog 40</a></li>
-            <li><a href="week-41.html">Blog 41</a></li>
-            <li><a href="week-42.html">Blog 42</a></li>
-            <li><a href="week-43.html">Blog 43</a></li>
-            <li><a href="week-44.html">Blog 44</a></li>
-            <li><a href="week-45.html">Blog 45</a></li>
-            <li><a href="week-46.html">Blog 46</a></li>
-            <li><a href="week-47.html">Blog 47</a></li>
-            <li><a href="week-48.html">Blog 48</a></li>
-            <li><a href="week-49.html">Blog 49</a></li>
-            <li><a href="week-50.html">Blog 50</a></li>
-            <li><a href="week-51.html">Blog 51</a></li>
-            <li><a href="week-52.html">Blog 52</a></li>
-        </ul>
+  <header>
+    <h1>Vitamin D Blog Series: Weekly Insights</h1>
+    <p>Browse every article in our 52-week journey exploring the benefits of Vitamin D with K2. Use search to jump to a topic or sort by newest.</p>
+    <div class="topbar">
+      <a class="chip" href="/">← Back to Home</a>
+      <a class="chip" href="#grid">Skip to Posts</a>
     </div>
+  </header>
+
+  <main class="container">
+    <!-- controls -->
+    <section class="actions" aria-label="Blog controls">
+      <div class="search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 21l-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="#6b7280" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input id="q" type="search" placeholder="Search titles & snippets…" aria-label="Search blog posts" />
+      </div>
+      <label>
+        <select id="sort" class="select" aria-label="Sort posts">
+          <option value="new">Newest first</option>
+          <option value="old">Oldest first</option>
+        </select>
+      </label>
+      <div class="count" id="count" aria-live="polite">Loading…</div>
+    </section>
+
+    <!-- grid -->
+    <section id="grid" class="grid" aria-label="All blog posts"></section>
+  </main>
+
+  <footer>© 2025 Vitamin-D-Benefits — All rights reserved.</footer>
+
+  <script>
+    // ---------- Helpers ----------
+    const TOTAL = 52;
+    const weekPath = n => `week-${n}.html`;
+
+    // ISO week number (used to mark "This week")
+    function isoWeek(d=new Date()){
+      const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+      const dayNum = date.getUTCDay() || 7;
+      date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+      const yearStart = new Date(Date.UTC(date.getUTCFullYear(),0,1));
+      return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+    }
+    const wrap = n => ((n - 1) % TOTAL + TOTAL) % TOTAL + 1;
+
+    async function getMetaForWeek(n){
+      const href = weekPath(n);
+      try{
+        const r = await fetch(href, {cache:'no-store'});
+        if(!r.ok) return null;
+        const html = await r.text();
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+
+        const title = (doc.querySelector('meta[property="og:title"]')?.content
+                    || doc.querySelector('title')?.textContent
+                    || doc.querySelector('h1')?.textContent
+                    || `Blog Week ${n}`).trim();
+
+        let desc = (doc.querySelector('meta[name="description"]')?.content || '').trim();
+        if(!desc){
+          const p = doc.querySelector('p');
+          if (p) desc = p.textContent.trim();
+        }
+        desc = (desc || '').replace(/\s+/g,' ').slice(0, 160);
+
+        return { week:n, url: href, title, desc };
+      }catch(e){ return null; }
+    }
+
+    // ---------- Load all weeks ----------
+    const currentWeek = wrap(isoWeek(new Date()));
+    const posts = [];
+
+    (async function init(){
+      const tasks = Array.from({length:TOTAL}, (_,i)=>getMetaForWeek(i+1));
+      const results = await Promise.all(tasks);
+      results.forEach(p => { if(p) posts.push(p); });
+
+      // default sort = newest first
+      posts.sort((a,b)=>b.week - a.week);
+
+      render(posts);
+      wireup();
+      injectBlogJsonLd(posts.slice(0, 12)); // add schema for top 12 to keep HTML light
+    })();
+
+    // ---------- Render ----------
+    const grid = document.getElementById('grid');
+    const count = document.getElementById('count');
+    const q = document.getElementById('q');
+    const sortSel = document.getElementById('sort');
+
+    function render(list){
+      grid.innerHTML = '';
+      list.forEach(p=>{
+        const el = document.createElement('article');
+        el.className = 'card';
+        el.innerHTML = `
+          <span class="badge">Week ${p.week}</span>
+          ${p.week === currentWeek ? '<span class="now" title="Current week">This week</span>' : ''}
+          <h2 class="title">${p.title}</h2>
+          <p class="excerpt">${p.desc || ''}</p>
+          <a class="read" href="${p.url}">Read →</a>
+        `;
+        grid.appendChild(el);
+      });
+      count.textContent = `${list.length} post${list.length===1?'':'s'}`;
+    }
+
+    function wireup(){
+      q.addEventListener('input', applyFilters);
+      sortSel.addEventListener('change', applyFilters);
+    }
+
+    function applyFilters(){
+      const term = q.value.trim().toLowerCase();
+      const sort = sortSel.value;
+      let view = posts.slice();
+
+      if(term){
+        view = view.filter(p =>
+          (p.title || '').toLowerCase().includes(term) ||
+          (p.desc || '').toLowerCase().includes(term)
+        );
+      }
+      view.sort((a,b)=> sort==='new' ? b.week - a.week : a.week - b.week);
+      render(view);
+    }
+
+    // ---------- JSON-LD (Blog + top posts) ----------
+    function injectBlogJsonLd(topPosts){
+      const data = {
+        "@context":"https://schema.org",
+        "@type":"Blog",
+        "name":"Vitamin D Benefits Blog",
+        "url":"https://vitamindbenefits.github.io/blog/",
+        "blogPost": topPosts.map(p=>({
+          "@type":"BlogPosting",
+          "headline": p.title,
+          "url": "https://vitamindbenefits.github.io/blog/" + p.url,
+          "description": p.desc
+        }))
+      };
+      const s = document.createElement('script');
+      s.type = 'application/ld+json';
+      s.textContent = JSON.stringify(data);
+      document.head.appendChild(s);
+    }
+  </script>
 </body>
 </html>
